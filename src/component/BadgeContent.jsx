@@ -1,6 +1,5 @@
-import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Typography } from '@mui/material'
+import { Avatar, Box,  Dialog, DialogActions, DialogContent,  Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import badge from "./badge.png"
 import { getUserBadges } from '../utils/fetchUserBadge'
 import { BadgeUi } from './BadgeUi'
 

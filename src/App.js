@@ -1,7 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import { Avatar, Box, Container, Typography } from "@mui/material";
 import { CustomTabPanel } from "./component/Tab";
 import { useEffect, useState } from "react";
@@ -9,7 +6,6 @@ import { BoxModal } from "./component/Box";
 import { getUserData } from "./utils/fetchUserDetails";
 import { getUserPointsAndLevel } from "./utils/fetchUserPoints";
 import { getUserRank } from "./utils/getuserRank";
-import { getUserBadges } from "./utils/fetchUserBadge";
 function App() {
     const [userData,setUserData] = useState(null)
     const [userPoints,setUserPoints] = useState(null)

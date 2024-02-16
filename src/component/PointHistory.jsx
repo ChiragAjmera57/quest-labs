@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Container,  List, ListItem, ListItemText } from '@mui/material';
 import { getUserPointHistory } from '../utils/fetchPointHistory';
 
 function PointHistoryPage() {
   const [pointHistory, setPointHistory] = useState([]);
 
   useEffect(() => {
-    // Fetch data from your API endpoint
     getUserPointHistory()
       .then((res)=>{
         console.log(res)
