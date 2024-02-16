@@ -3,11 +3,27 @@ import "./App.css";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Avatar, Box, Container, Typography } from "@mui/material";
-import profileImg from "../src/component/profile.png";
 import { CustomTabPanel } from "./component/Tab";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BoxModal } from "./component/Box";
+import { getUserData } from "./utils/fetchUserDetails";
+import { getUserPointsAndLevel } from "./utils/fetchUserPoints";
+import { getUserRank } from "./utils/getuserRank";
 function App() {
-  
+    const [userData,setUserData] = useState(null)
+    const [userPoints,setUserPoints] = useState(null)
+    const [userRank,setUserRank] = useState(null)
+    useEffect(()=>{
+      getUserData().then((res)=>{
+        setUserData(res.data)
+      })
+      getUserPointsAndLevel().then((res)=>{
+        setUserPoints(res)
+      })
+      getUserRank().then((res)=>{
+        setUserRank(res.data.position);
+      })
+    },[])
   return (
     <Box
       m={1}
@@ -37,7 +53,7 @@ function App() {
       >
         <Avatar
           alt="Remy Sharp"
-          src={profileImg}
+          src={userData?.imageUrl}
           sx={{
             width: 79,
             height: 79,
@@ -54,90 +70,12 @@ function App() {
           align="center"
           style={{ fontSize:'20px', fontFamily:'Roboto', fontWeight:'bolder',color:'#535353' }}
         >
-          Rich Explorer
+         {userData?.name}
         </Typography>
-        <Container  sx={{display:'flex',margin:'auto',justifyContent:'space-between',marginTop:'20px'}} >
-        <Box 
-      sx={{ 
-        bgcolor: "#7052ff",
-        width: '25%', 
-        height: '100px', 
-        borderRadius: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-    >
-      <Typography
-        align="center"
-        style={{ color: 'white', marginBottom: '5px' }} // Adjust the margin-bottom for spacing
-        variant="h6" // Using variant="h6" for better visual hierarchy
-      >
-        2001
-      </Typography>
-      <Typography
-        align="center"
-        style={{ color: 'white', marginTop: '5px' }} // Adjust the margin-top for spacing
-        variant="subtitle1" // Using variant="subtitle1" for better visual hierarchy
-      >
-        Points
-      </Typography>
-    </Box>
-    <Box 
-      sx={{ 
-        bgcolor: "#7052ff",
-        width: '25%', 
-        height: '100px', 
-        borderRadius: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-    >
-      <Typography
-        align="center"
-        style={{ color: 'white', marginBottom: '5px' }} // Adjust the margin-bottom for spacing
-        variant="h6" // Using variant="h6" for better visual hierarchy
-      >
-        #1
-      </Typography>
-      <Typography
-        align="center"
-        style={{ color: 'white', marginTop: '5px' }} // Adjust the margin-top for spacing
-        variant="subtitle1" // Using variant="subtitle1" for better visual hierarchy
-      >
-        Rank
-      </Typography>
-    </Box>
-    <Box 
-      sx={{ 
-        bgcolor: "#7052ff",
-        width: '25%', 
-        height: '100px', 
-        borderRadius: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
-    >
-      <Typography
-        align="center"
-        style={{ color: 'white', marginBottom: '5px' }} // Adjust the margin-bottom for spacing
-        variant="h6" // Using variant="h6" for better visual hierarchy
-      >
-        3
-      </Typography>
-      <Typography
-        align="center"
-        style={{ color: 'white', marginTop: '5px' }} // Adjust the margin-top for spacing
-        variant="subtitle1" // Using variant="subtitle1" for better visual hierarchy
-      >
-        Level
-      </Typography>
-    </Box>
+        <Container  sx={{display:'flex',margin:'auto',justifyContent:'space-evenly',marginTop:'20px'}} >
+          <BoxModal data={userPoints?.data} label={"Points"} />
+          <BoxModal data={`#${userRank}`} label={"Rank"}  />
+          <BoxModal data={userPoints?.tier} label={"Level"}  />
         </Container>
        <CustomTabPanel />
       </Box>

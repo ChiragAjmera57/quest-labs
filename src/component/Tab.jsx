@@ -42,7 +42,7 @@ export function CustomTabPanel() {
         />
       </Tabs>
       {/* Content for each tab can be added here based on the selected tab */}
-      {value === 0 && <div>Membership Content</div>}
+      {value === 0 && <Typography align='center'>Membership Content</Typography>}
       {value === 1 && <div>{<BadgeContent />}</div>}
       {value === 2 && <div>Point History Content</div>}
     </Box>
