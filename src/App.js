@@ -9,6 +9,7 @@ import { BoxModal } from "./component/Box";
 import { getUserData } from "./utils/fetchUserDetails";
 import { getUserPointsAndLevel } from "./utils/fetchUserPoints";
 import { getUserRank } from "./utils/getuserRank";
+import { getUserBadges } from "./utils/fetchUserBadge";
 function App() {
     const [userData,setUserData] = useState(null)
     const [userPoints,setUserPoints] = useState(null)
@@ -23,6 +24,7 @@ function App() {
       getUserRank().then((res)=>{
         setUserRank(res.data.position);
       })
+     
     },[])
   return (
     <Box

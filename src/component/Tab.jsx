@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Box, Typography } from '@mui/material';
 import { BadgeContent } from './BadgeContent';
+import PointHistoryPage from './PointHistory';
 
 export function CustomTabPanel() {
   const [value, setValue] = React.useState(0);
@@ -20,6 +21,7 @@ export function CustomTabPanel() {
         centered
       >
         <Tab 
+        disabled
           label={
             <Typography style={{ fontFamily:'Roboto',fontWeight:'bold' }}>
               Membership
@@ -43,8 +45,8 @@ export function CustomTabPanel() {
       </Tabs>
       {/* Content for each tab can be added here based on the selected tab */}
       {value === 0 && <Typography align='center'>Membership Content</Typography>}
-      {value === 1 && <div>{<BadgeContent />}</div>}
-      {value === 2 && <div>Point History Content</div>}
+      {value === 1 && <div style={{height:'50%',}}>{<BadgeContent />}</div>}
+      {value === 2 && <div>{<PointHistoryPage />}</div>}
     </Box>
   );
 }
