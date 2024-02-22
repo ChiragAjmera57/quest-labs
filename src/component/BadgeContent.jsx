@@ -2,56 +2,50 @@ import { Avatar, Box,  Dialog, DialogActions, DialogContent,  Typography } from 
 import React, { useEffect, useState } from 'react'
 import { getUserBadges } from '../utils/fetchUserBadge'
 import { BadgeUi } from './BadgeUi'
+import badge1 from '../assets/badge1.png'
+import badge2 from '../assets/badge2.png'
+import badge3 from '../assets/badge3.png'
+import badge4 from '../assets/badge4.png'
+import badge5 from '../assets/badge5.png'
+import MyModal from './Modal'
+
 
 export const BadgeContent = () => {
-  const [open, setOpen] = React.useState(false);
-  const [currBadge, setCurrBadge] = React.useState(null);
-  const handleOpen = (ele) => {
-    setCurrBadge(ele)
-    console.log(ele)
-        
-    setOpen(true);
-
-  }
-  const handleClose = () => setOpen(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);  
+  
+  const setModalState = (value) => setModalIsOpen(value);
 
   const [userBadge,setUserBadge] = useState(null)
-  useEffect(()=>{
-    getUserBadges().then((res)=>{
-      setUserBadge(res.data)
-    })
-  },[])
+
   return (
     <Box mt={4} sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', overflow: 'auto' }}>
-  {userBadge?.map((ele, index) => {
-    return (
-      <div onClick={()=>handleOpen(ele)}>
-          <Box  key={index} sx={{ width: '100px', margin: '10px', textAlign: 'center' }}>
-        <BadgeUi badge={ele.imageUrl} />
+
+   <div onClick={()=>{setUserBadge(badge1);setModalIsOpen(true)}} >
+          <Box   sx={{ width: '100px', margin: '10px', textAlign: 'center' }}>
+        <BadgeUi  badge={badge1} />
       </Box>
       </div>
-      
-    );
-    
-  })}
- <Dialog open={open} onClose={handleClose}>
-      <DialogContent>
-      <Avatar
-      
-    alt="Remy Sharp"
-    src={currBadge?.imageUrl}
-    sx={{
-      margin:'auto',
-      width: 110,
-      height: 110,
-    }}></Avatar>
-        <Typography variant="body1" align="center" mt={2}>Badge Unlocked</Typography>
-        <Typography variant="body2" align="center">Congratulations!</Typography>
-      </DialogContent>
-      <DialogActions>
-        {/* <Button onClick={handleClose} variant="contained">Close</Button> */}
-      </DialogActions>
-    </Dialog>
+      <div onClick={()=>{setUserBadge(badge2);setModalIsOpen(true)}}>
+          <Box  sx={{ width: '100px', margin: '10px', textAlign: 'center' }}>
+        <BadgeUi badge={badge2} />
+      </Box>
+      </div>
+      <div onClick={()=>{setUserBadge(badge3);setModalIsOpen(true)}}>
+          <Box  sx={{ width: '100px', margin: '10px', textAlign: 'center' }}>
+        <BadgeUi badge={badge3} />
+      </Box>
+      </div>
+      <div onClick={()=>{setUserBadge(badge4);setModalIsOpen(true)}}>
+          <Box  sx={{ width: '100px', margin: '10px', textAlign: 'center' }}>
+        <BadgeUi badge={badge4} />
+      </Box>
+      </div>
+      <div onClick={()=>{setUserBadge(badge5);setModalIsOpen(true)}}>
+          <Box  sx={{ width: '100px', margin: '10px', textAlign: 'center' }}>
+        <BadgeUi badge={badge5} />
+      </Box>
+      </div>
+<MyModal modalIsOpen={modalIsOpen} badge={userBadge} setModalIsOpen={setModalState} />
 </Box>
 
   

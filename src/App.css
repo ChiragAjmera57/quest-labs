@@ -1,33 +1,36 @@
-/* Hide scrollbar by default */
 ::-webkit-scrollbar {
     display: none;
   }
   
-  /* Show scrollbar when content is scrolled */
   ::-webkit-scrollbar-thumb {
     display: none;
   }
   
-  /* Show scrollbar track when content is scrolled */
   ::-webkit-scrollbar-track {
     display: none;
   }
   
-  /* Define scrollbar track style */
   ::-webkit-scrollbar-track-piece {
-    background-color: transparent; /* Change as needed */
+    background-color: transparent; 
   }
   
-  /* Define scrollbar thumb style */
   ::-webkit-scrollbar-thumb {
     display: block;
-    background-color: #7052ff; /* Purple color */
-    width: 6px; /* Reduced width */
-    border-radius: 3px; /* Rounded corners */
+    background-color: #7052ff;
+    width: 6px; 
+    border-radius: 3px; 
   }
   
-  /* Show scrollbar when content is hovered */
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #4c36c8; /* Darker shade of purple on hover */
+    background-color: #4c36c8; 
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    backdrop-filter: blur(10px);
   }
   
